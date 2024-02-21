@@ -1,8 +1,9 @@
-FROM node:20
+FROM node:14
+RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
 WORKDIR /usr/src/app
 COPY package*.json ./
+USER node
 RUN npm install
-RUN npm install express
-COPY . .
+COPY --chown=node:node . .
 EXPOSE 3000
 CMD [ "node", "server.js" ]
