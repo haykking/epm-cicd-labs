@@ -22,6 +22,10 @@ jobs:
     - name: Deploy to minikube
       run:
         kubectl apply -f k8s-node-app.yaml
+    - name: Try the cluster !
+      run: |
+          sleep 30
+          kubectl get all
     - name: Test service URLs
       run: |
           minikube service list
